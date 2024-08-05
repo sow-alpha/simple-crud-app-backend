@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');
 const productRoute = require('./routes/product.route.js')
+require('dotenv').config();
 const app = express()
 
 //middleware
@@ -18,7 +19,8 @@ app.get('/', (req, res) => {
 })
 
 
-mongoose.connect("mongodb+srv://root:51oHgcEIkBQJrJiN@backenddb.tgwhypa.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB")
+mongoose.connect(process.env.MONGO_URI, {
+})
     .then(() => {
         console.log("connected to databse");
         app.listen(3000, () => {
